@@ -2,19 +2,17 @@ package com.shop.jpabooks.Controller;
 
 import com.shop.jpabooks.Domain.model.MemberDto;
 import com.shop.jpabooks.Service.MemberService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RequestMapping("/member")
 @RestController
+@RequiredArgsConstructor
 public class MemberController {
 
-    private MemberService memberService;
-
-    public MemberController(MemberService memberService) {
-        this.memberService = memberService;
-    }
+    private final MemberService memberService;
 
     @GetMapping("/{id}")
     public MemberDto findById(@PathVariable String id) {

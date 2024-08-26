@@ -2,25 +2,23 @@ package com.shop.jpabooks.Service;
 
 import com.shop.jpabooks.Domain.model.MemberDto;
 import com.shop.jpabooks.Store.MemberStore;
+import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Transactional(readOnly = true)
 @Service
+@RequiredArgsConstructor
 public class MemberService {
 
-    private MemberStore memberStore;
-
-    public MemberService(MemberStore memberStore) {
-        this.memberStore = memberStore;
-    }
+    private final MemberStore memberStore;
 
     public MemberDto findById(String id) {
         return this.memberStore.findById(id);
     }
 
-    @Transactional(readOnly = true)
     public List<MemberDto> findAll() {
         return this.memberStore.findAll();
     }
